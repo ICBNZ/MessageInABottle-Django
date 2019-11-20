@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+  {% load static %}
+{# Gameplay page #}
+
+  {% block bkg %}
+  <style>
+     #body-bg {
+      background-image: url({% static 'img/test1.jpg' %})
+     }
+  </style>
+  {% endblock %}
+
+    {% block content %}
+    <iframe src="https://i.simmer.io/@imrealnow/something-fishy" style="width:480px;height:600px;border:0;margin:5% 20%;"></iframe>
+    <br><h2 id="loadingMessage" style="margin-left:30%;">This may take a while to load...</h2><br><br><br><br>
+
+      <div id='about_game' style="width:100%;">
+          <h4>Instructions</h4>
+          <p><q>W</q> key = UP</p>
+          <p><q>S</q> key = DOWN</p>
+          <p><q>D</q> key = FASTER</p>
+          <p><q>A</q> key = SLOWER</p>
+          <p>Currently the unity game engine used to develop <q>Something Fishy</q> does not fully support all mac browsers, <br>
+            if you are having trouble loading this game on an Apple it may due to this.</p>
+      </div>
+      <script type="text/javascript">
+        function loadMessageGone(){
+          message = document.getElementById("loadingMessage")
+          message.style.display = "none"
+        }
+        window.onload = function(){
+          setTimeout(loadMessageGone, 12000)
+        }
+      </script>
+    {% endblock %}

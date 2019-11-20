@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{# Home Page #}
+    {% block bkg %}{% endblock %}
+
+    {% block slideshow %}
+       <!-- Slideshow -->
+       <div class="slideshow-container">
+         <div class="slides fade">
+           <img src="{% static 'img/test1.jpg' %}" style="width:100%">
+         </div>
+         <div class="slides fade">
+           <img src="{% static 'img/slide1.jpg' %}" style="width:100%">
+         </div>
+         <div class="slides fade">
+           <img src="{% static 'img/test3.jpg' %}" style="width:100%">
+         </div>
+         <div class="slides fade">
+           <img src="{% static 'img/turtle5.jpg' %}" style="width:100%">
+         </div>
+         <div class="slides fade">
+           <img src="{% static 'img/test2.jpg' %}" style="width:100%">
+         </div>
+       </div>
+    {% endblock %}
+
+
+    {% block content %}
+      <!--    Header  -->
+      <header>
+        <div id="box1">
+          <h2 style="font-size:70px;Margin:0;Padding:0;">Ocean Pollution</h2>
+        </div>
+        {% block box2 %}
+        {% endblock %}
+      </header>
+    {% endblock %}
+
+    <!--    Container1 - not visible on login/signup page  -->
+     {% block container1 %}
+     {% endblock %}

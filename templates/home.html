@@ -1,0 +1,68 @@
+{% extends 'base-home.html' %}
+ {% load static %}
+{# Home Page #}
+
+    {% block box2 %}
+        {% if user.is_authenticated %}
+            <div id="box2">
+              <div class="btn-group" id="loginbtn">
+              <br>
+              <h4> Welcome {{ user.username }}</h4>
+              </div>
+            </div>
+        {% else %}
+          <div id="box2">
+            <!--    buttons  -->
+            <div class="btn-group" id="loginbtn">
+              <a href="https://oceanmess.com/accounts/login/"><button>Login</button></a>
+              <a href="https://oceanmess.com/accounts/signup/"><button>Signup</button></a>
+            </div>
+          </div>
+        {% endif %}
+
+        {% block container1 %}
+              <!--    Boxes 1 -->
+              <div id="container1">
+                <div style="
+                background-color:rgba(31, 52, 69);" id="box">
+                  <img style="opacity:0.75;" src="{% static 'img/turtle_rubbish.jpg' %}"/>
+                  <div id="imagetext">
+                    <a href="{% url 'about' %}">
+                    <h2>About Us</h2><hr style="width:30%;Margin:0;Padding:0;"class="line1"><br>
+                    </a>
+                  </div>
+                </div>
+
+                <div id="box" style="
+                background-color:rgba(31, 52, 69);" >
+                  <img style="opacity:0.75;" src="{% static 'img/bottle.jpg' %}"/>
+                  <div id="imagetext">
+                     <a href="{% url 'whatcanbedone' %}">
+                    <h2>What Can Be Done?</h2><hr style="width:60%;Margin:0;Padding:0;"class="line1"><br></a>
+                  </div>
+                </div>
+              </div>
+
+            <!--    Blog change -->
+            <div id="container2">
+              <h4>Blog</h4>
+              {% for blog in three_latest_post %}
+              <div id="blogbox">
+                 <a href="{% url 'blog' %}">
+                <img id="blogimg" id="blogpic" src="{{ blog.image.url }}"/></a>
+                {% if blog.user.image %}
+                  <div id="blogaccount"><img src="{{blog.user.image.url}}" alt="UserImage"></div>
+                {% else %}
+                  <div id="blogaccount"><img src="{% static 'img/accountnav2.png' %}" alt="UserImage"></div>
+                {% endif %}
+                <ul>
+                  <li>{{blog.datePublished|date:"M d, Y"}}</li>
+                  <li>{{blog.user.username}}</li>
+                  <li>{{blog.title}}</li>
+                </ul>
+              </div>
+              {% endfor %}
+            </div>
+
+        {% endblock %}
+    {% endblock %}

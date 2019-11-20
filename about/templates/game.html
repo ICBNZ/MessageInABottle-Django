@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+  {% load static %}
+{# About the Game Page #}
+{% block bkg %}
+<style>
+   #body-bg {
+    background-image: url({% static 'img/test1.jpg' %})
+   }
+</style>
+{% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+      <div id="box3">
+        <div id="game_descript">
+          <h1>Game</h1>
+          <br><h4>Level 1</h4>
+          <img src="{% static 'img/level1.png' %}" alt="image of level 1 of Something Fishy">
+          <div id="content-game">
+            <p>In level one you start as fish, avoiding rubbish and collecting food as you swim.  Your health is decreased when you hit rubbish, and increased when you find food.  However food is harder to find than rubbish. You must also watch out for micro beads, these look like food but are in fact plastic that reduces your health.</p>
+            <ul>
+              <li><q>W</q> key will make you swim up.</li>
+              <li><q>S</q> key will make you swim down.</li>
+              <li><q>D</q> key will make you swim faster.</li>
+              <li><q>A</q> key will make you swim slower.</li>
+           <ul>
+          </div>
+
+          <h4>Level 2</h4>
+          <img src="{% static 'img/level2.png' %}" alt="image of level 2 of Something Fishy">
+          <div id="content-game">
+          <p>In level 2 things get harder, the screen gets darker. <br>
+            Food becomes harder to find, while the amount of pollution has increased.  <br>
+            Staying alive in this environment is not easy.</p><br>
+         </div>
+
+          <br><br><h4>Level 3</h4>
+          <img src="{% static 'img/level3.png' %}" alt="image of level 3 of Something Fishy">
+          <div id="content-game">
+            <p>In the third level the pollution builds to extremely difficult levels, it is nearly impossible to navigate to the end.  This represents how difficult life has become for our marine life and the importance of taking action to prevent things getting this bad.  It might be enjoyable to see how far you can get, but really the only way to continue is if there was less plastic in the sea.  This is why your participation in removing plastic is so important.  Fishy and the team at <q>message in a bottle</q> thank you.</p>
+            </div>
+        </div>
+      </div>
+
+      <div id="box4">
+        <div id='about_game'>
+            <h4>About</h4>
+            <p>If you are a fan of Gand Theft Auto, Minecraft, Half Life or any other popular computer game, prepare to have you mind blown.  Computer games just got better. Something Fishy makes those games seem like total rubbish.</p>
+            <p>In Something Fishy you are a fish that went on a swim to find some food, but on the way back to your home you notice that a lot of rubbish has floated into your part of the sea. Your goal is to get back home safely without getting caught in the rubbish.</p>
+        </div>
+        <br><br>
+        <div class="btn-group" id="passwordbtn">
+          <a href="{% url 'something_fishy' %}"><button>Play Something Fishy</button>
+        </div><br><br>
+        <img src="{% static 'img/fishy.png' %}" alt="Fishy playing computer games" height="350px"></a>
+        <br><br>
+
+
+      </div>
+    </header>
+
+{% endblock %}

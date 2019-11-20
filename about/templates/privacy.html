@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+  {% load static %}
+{# Account Page #}
+  {% block bkg %}
+    <style>
+       #body-bg{
+        background-image:  url({% static 'img/rocknorway.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+         <div class="accountbox" style="padding:2%;">
+
+                    <h4>Privacy Policy</h4>
+           <ul>
+             <p>Message In A Bottle one of our main priorities is the privacy of our visitors.</p>
+              <p>When you register for Message In A Bottle, we collect personal information including email and full name from third party apps and address for account creation.
+              <p> This information is collected to improve user experience and is kept private.</p>
+              <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+            </ul>
+        </div>
+    </header>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% load static %}
+<html lang="en-US">
+     <!-- HEAD -->
+     <head>
+        <meta charset="UTF-8">
+        <title>A Message In A Bottle</title>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+         {% block head %}{% endblock %}
+         <link rel="stylesheet" id="style" href="{% static 'base.css' %}" type="text/css" media="all">
+        <link rel="stylesheet" id="style" href="{% static 'style1.css' %}" type="text/css" media="all">
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+
+     </head>
+
+     <body>
+
+      <div id="body-bg">{% block bkg %}{% endblock %}</div>
+
+      <!--    Logo  -->
+        <a id="logo" href="{% url 'home' %}">
+        <img src="{% static 'img/darklogo.png' %}" alt="Logo" style="opacity:0.6;"></a>
+       <!--    Dark Navigation  -->
+       <nav id="nav2">
+
+
+           <!--    Navigation  -->
+             <a href="{% url 'about' %}"class="navbtn" style="text-align:center;">
+             <svg height="60" width="150">
+                <rect class="shape" id="shape2" height="60" width="150" />
+                <div id="nav2" class="text">About</div>
+             </svg></a>
+
+           <!--  Get Involved Dropdown  -->
+            <div class="dropdown">
+              <a class="dropbtn">Get Involved
+              <img src="{% static 'img/navarrownav2.png' %}" id="navarrow" alt="Get Involved"></a>
+              <div class="dropdown-content">
+                <a href="{% url 'whatcanbedone' %}">What Can Be Done?</a>
+                <a href="{% url 'blog' %}">Blog</a>
+                <a href="{% url 'events' %}">Events</a>
+              </div>
+            </div>
+            <!--  Navigation Continued  -->
+            <a href="{% url 'team' %}"class="navbtn">
+            <svg height="60" width="150">
+               <rect class="shape" id="shape2" height="60" width="150" />
+               <div id="nav2" class="text">Team</div>
+            </svg></a>
+
+            <!--  Game Involved Dropdown  -->
+             <div class="dropdown">
+               <a class="dropbtn">Game
+               <img src="{% static 'img/navarrownav2.png' %}" id="navarrow" alt="Get Involved"></a>
+               <div class="dropdown-content">
+                 <a href="{% url 'game' %}">About</a>
+                 <a href="{% url 'something_fishy' %}">Play</a>
+               </div>
+             </div>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}"><img src="{% static 'img/accountnav2.png' %}" alt="Account"></a>
+            {% endif %}
+        </nav>
+          <!--   Mobile Nav Button  -->
+          <span id="mobilenavbtn" style="color:rgba(5, 42, 54, 0.8);" onclick="openMobileNav()">&#9776;</span>
+          <div id="mobilenav">
+             <ul>
+              <a href="javascript:void(0)" id="mobilenavbtn" onclick="closeMobileNav()">&times;</a><br>
+              <li><img style="width:200px;opacity:0.9;" src="{% static 'img/logo5.png' %}" alt="Logo"></li>
+
+              <a href="{% url 'home' %}"><li>Home</li></a>
+              <a href="{% url 'about' %}"><li>About</li></a>
+              <a href="{% url 'team' %}"><li>Team</li></a>
+              <a href="{% url 'game' %}"><li>Game</li></a>
+              <div class="dropdown">
+                <a class="dropbtn"><li>Get&nbspInvolved&nbsp&nbspv</li></a>
+                <div class="dropdown-content">
+                  <a href="{% url 'whatcanbedone' %}">What Can Be Done?</a>
+                  <a href="{% url 'blog' %}">Blog</a>
+                  <a href="{% url 'events' %}">Events</a>
+                </div>
+              </div><br><br><br>
+               {% if user.is_authenticated %}
+               <a href="{% url 'profile' %}"><li><img id="mobile-icon" src="{% static 'img/account.png' %}" alt="Account"></li></a>
+               <a href="{% url 'logout' %}"><li><img id="mobile-icon" src="{% static 'img/logouticon.png' %}" alt="logout"></li></a>
+               {% endif %}
+             </ul>
+          </div>
+           <!--    End Nav Bar  -->
+
+          <!--   Main Content  -->
+         {% block content %}
+         {% endblock %}
+
+
+         <!--    Footer  -->
+        <footer>
+          <ul>
+            <div class="footer-content"><li>&copy;  Message In a Bottle</li></div>
+            <div id="vline"></div>
+            <div class="footer-content">
+              <a href="{% url 'about' %}"><li>About Us</li></a>
+              <a href="https://oceanmess.com/accounts/signup/"><li>Signup</li></a>
+            </div>
+            <div class="footer-content">
+              <a href="{% url 'whatcanbedone' %}"><li>Donate</li></a>
+              <a href="{% url 'blog' %}"><li>Blog</li></a>
+             <a href="{% url 'privacy' %}"><li>Privacy Policy</li></a>
+            </div>
+          </ul>
+        </footer>
+
+
+         <!-- Javascript  -->
+         {% block scripts %}{% endblock %}
+         <script type="text/javascript" src="{% static 'javascript1.js' %}"></script>
+
+    </body>
+
+</html>

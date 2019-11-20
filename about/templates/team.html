@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{# Home Page #}
+
+  {% block bkg %}
+    <style>
+       #body-bg {
+        background-image: url({% static 'img/wave7.jpg' %})
+       }
+    </style>
+  {% endblock %}
+  {% block js %}
+      <script type="text/javascript">
+        var imageBorder = Math.floor(Math.random()*4)
+        function displayDev(num){
+          var contents=new Array()
+          contents[0]="<div id='dev_profile'><h4>Liam Green</h4><p><strong>What part of the project you worked on?"
+            +"</strong></p><p>I designed and developed the \"Something Fishy\" game which demonstrates the effects of plastic pollution on marine life.</p>"
+            + "<p><strong>What is your favourite aspect of the website?</strong></p>"
+            + "<p>My favourite aspects of the website are the social aspects that helps bring people together to work towards fighting pollution in the water.</p>"
+            + "<p><strong>Why is protecting our ocean environment important for you?</strong></p>"
+            + "<p>For me, protecting water from pollution is important because if we continue on with how we're currently going, thousands of marine species could go extinct.</p>"
+            + "<p><strong>What is your favourite fish or marine creature?</strong></p>"
+            + "<p>My favourite fish is the lanternfish. It's probably the most common fish in the ocean, and it glows in the dark.</p>"
+            + "</div>"
+          contents[1]="<div id='dev_profile'><h4>Isla Becker</h4><p><strong>What part of the project you worked on?"
+            +"</strong></p><p>I designed and developed this website and front end of the application.</p>"
+            + "<p><strong>What is your favourite aspect of the website?</strong></p>"
+            + "<p>My favourite aspect is the integration of blog, social media and google geocoding that enhances the user experience and allows users to connect and share from around the world, encouraging action and discussion about plastic pollution. </p>"
+            + "<p><strong>Why is protecting our ocean environment important for you?</strong></p>"
+            + "<p>Protecting the ocean is important as plastic pollution is destroying the homes and lives of many sea creatures and our source of food.</p>"
+            + "<p><strong>What is your favourite fish or marine creature?</strong></p>"
+            + "<p>I like many marine creatures but my favourite would be the turtle.</p>"
+            + "</div>"
+          contents[2]="<div id='dev_profile'><h4>Harry Furnish</h4><p><strong>What part of the project you worked on?"
+            +"</strong></p><p>I developed the Message In a Bottle application which acts a tool for staff members and the general public for searching for individuals who are making a real impact against plastic pollution.</p>"
+            + "<p><strong>What is your favourite aspect of the website?</strong></p>"
+            + "<p>My most-liked aspect of the website is the forum, which allows for probably the most important distribution of information on the website.</p>"
+            + "<p><strong>Why is protecting our ocean environment important for you?</strong></p>"
+            + "<p>Protection of the ocean from pollution is a matter and life and death. A very large proportion of the world is reliant on the ocean as a their sole source of food, and if you food is filled with plastics that render it inedible your family is in trouble. The other side is also that there are marine life which are now having their ecosystems contaminated and effectively wiped out, destroying a beautiful section of that ocean and threatening the existence of certain species of marine life.</p>"
+            + "<p><strong>What is your favourite fish or marine creature?</strong></p>"
+            + "<p>My favourite marine animal is the Sea Otter. They are very resourceful and intelligent animals, I love just watching them gather scallops and break them open while floating effortlessly on the surface of the sea.</p>"
+            + "</div>"
+            contents[3]="<div id='dev_profile'><h4>Ryan Parry</h4><p><strong>What part of the project you worked on?"
+              +"</strong></p><p>I have been working on the website.</p>"
+              + "<p><strong>What is your favourite aspect of the website?</strong></p>"
+              + "<p>Selecting post and events based on your area was most interesting to me, not least because it was an aspect I worked on.  Working with this data and looking at efficient ways to retrieve it was really interesting, and shows the advantages and disadvangages different database structures bring.</p>"
+              + "<p><strong>Why is protecting our ocean environment important for you?</strong></p>"
+              + "<p>The ocean is very important to me, as a seafood lover it is the source of favorite foods, it also place for recreation. Plastic left by us in the waterway will remain there long after we are gone, however removing plastic will benefit our environment today, our marine life tomorrow and the world we leave to the next generation.</p>"
+              + "<p><strong>What is your favourite fish or marine creature?</strong></p>"
+              + "<p>That is a very good question, I have always been amazed by the way cuttlefish move and blend with their environment, changing colours like curious little aliens, however I am also a huge fan of hoki.</p>"
+              + "</div>"
+
+
+              var spacing="<br>"
+              var display_div = document.getElementById("teamDiv")
+              display_div.innerHTML=contents[num]
+              var images = document.getElementsByClassName("super_team")
+              var i=0
+              // removes any already selected borders
+
+              images[imageBorder].style.border=0
+
+              images[num].style.border = "thick solid #457dcc";
+              imageBorder = num
+              //console.log(imageBorder)
+              }
+
+              window.onload = function(){
+                displayDev(imageBorder)
+              }
+      </script>
+  {% endblock %}
+
+
+  {% block content %}
+    <!--    Header  -->
+    <header>
+      <div id="box1">
+        <h1>Team</h1>
+      </div>
+      <div id="box2">
+        <div id='dev_team'>
+            <h4>Who Are We?</h4>
+            <p>We are a bunch of IT professionals who have had the opportunity to create a website, game and mobile app that can help our society.<br>
+            We aim to inform and encourage people to make a difference when it comes to plastic pollution.</p>
+        </div>
+      </div>
+    </header>
+
+      <div id="dev_info">
+        <div id="dev-content-info">
+        <ul>
+          <h2>Meet the team</h2><br>
+          <a onclick="displayDev(0)"><img class="super_team" id="super_team0" src={% static 'img/Liam.png' %} alt='image of Liam'><li>Liam Green</li></a>
+          <a onclick="displayDev(1)"><img class="super_team" id="super_team1" src={% static 'img/Islapic.jpg' %} alt='image of Isla'><li>Isla Becker</li></a>
+          <a onclick="displayDev(2)"><img class="super_team" id="super_team2" src={% static 'img/harry2.jpg' %} alt='image of Harry'><li>Harry Furnish</li></a>
+          <a onclick="displayDev(3)"><img class="super_team" id="super_team3" src={% static 'img/ryan.png' %} alt='image of Ryan'><li>Ryan Parry</li></a>
+        </ul>
+          </div>
+      </div>
+        <div id=teamDiv></div>
+
+
+{% endblock %}

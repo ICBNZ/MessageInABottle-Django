@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{# Account Page #}
+{% block bkg %}
+  <style>
+     #body-bg {
+      background-image:  url({% static 'img/rocknorway.jpg' %})
+     }
+  </style>
+{% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+
+      <div id="userimage">
+        {% if user.image %}
+          <img src="{{ user.image.url }}" alt="UserImage">
+        {% else %}
+            <img src="{% static 'img/profilepic1.jpg' %}" alt="UserImage">
+        {% endif %}
+      </div>
+
+      <a id="editbtn" href="{% url 'edit_profile' %}">
+      <img id="edit" src="{% static 'img/edit.png' %}" alt="Edit"></a>
+
+      <div class="accountbox">
+        <div id="account-inner">
+        <br>
+          <!--    Account Info  from logged in user -->
+          <h4>Account</h4>
+          <div id="info">
+          <ul id="info1">
+            <li>First:</li>
+            <li>Last:</li>
+            <li>Username:</li>
+            <li>Email:</li>
+            <li>Location:</li>
+          </ul>
+          <ul id="info2">
+            <li>{{ user.first_name }}</li>
+            <li>{{ user.last_name }}</li>
+            <li>{{ user.username }}</li>
+            <li>{{ user.email }}</li>
+            <li>{{ user.address }}</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </header>
+
+
+
+    <!--    Display list of User's Posts and Events -->
+    <div id="container1">
+      <div id="container4">
+        <h4>My Posts</h4>
+        {% for post in posts %}
+        <div id="blogbox">
+          <img id="blogimg" src="{{ post.image.url }}"/>
+          <ul>
+            <li>{{post.datePublished}}</li>
+            <li>{{post.title}}</li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div id="container1">
+      <div id="container4">
+            <h4>My Events</h4>
+            {% for event in events %}
+            <div id="blogbox">
+              {% if events %}
+              <img id="blogimg" src="{{ event.image.url }}"/>
+              <ul>
+                <li>{{event.title}}</li>
+              </ul>
+              {% else %}
+              <img id="blogimg" src="{% static 'img/plastic1.jpg' %}"/>
+              <ul>
+                <li>You Have No Events Yet</li>
+              </ul>
+              {% endif %}
+            </div>
+            {% endfor %}
+       </div>
+    </div>
+{% endblock %}

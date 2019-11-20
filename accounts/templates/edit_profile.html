@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{# Account Page #}
+  {% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/rocknorway.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+
+      <div class="accountbox-editbox">
+            <!--    Edit Account -->
+          <div id="info">
+          <ul id="info1">
+
+          <h4>Edit Profile</h4><br><br><br>
+            <a href="{% url 'add_address' %}">Address:</a><br><br>
+            <a href="{% url 'edit_password' %}">Password:</a>
+          </ul>
+          <ul id="info2">
+            {% if user.image %}
+              <img src="{{ user.image.url }}" alt="UserImage">
+            {% else %}
+                <img src="{% static 'img/profilepic1.jpg' %}" alt="UserImage">
+            {% endif %}
+
+            <button id="btn1" onclick="location.href='{% url 'add_address' %}'">Update Address</button><br><br>
+            <button id="btn1" onclick="location.href='{% url 'edit_password' %}'">Change Password</button><br>
+        </div>
+      <form enctype='multipart/form-data' method="post">
+        {% csrf_token %}
+        <div id="info">
+        <ul id="info1">
+          {{ form.first_name.label_tag }}<br><br>
+          {{ form.last_name.label_tag }}<br><br>
+          {{ form.username.label_tag }}<br><br>
+          {{ form.email.label_tag }}<br><br>
+          {{ form.image.label_tag }}<br><br>
+        </ul>
+        <ul id="info2">
+          {{ form.first_name }}<br><br>
+          {{ form.last_name }}<br><br>
+          {{ form.username }}<br><br>
+          {{ form.email }}<br><br>
+          {{ form.image }}<br><br>
+
+      </div>
+        <div class="btn-group">
+          <button id="btn2" type="submit">Update Details</button>
+        </div>
+      </form>
+
+    </div>
+  </header>
+
+{% endblock %}

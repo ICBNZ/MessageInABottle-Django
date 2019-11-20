@@ -1,0 +1,47 @@
+{% extends 'base2.html' %}
+  {% load static %}
+{# Home Page #}
+  {% block bkg %}
+    <style>
+       body {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+        <div class="accountbox-editbox">
+          <h4>Post A Blog</h4>
+           <form enctype='multipart/form-data' method="POST">
+              {% csrf_token %}
+             <div id="info">
+             <ul id="info1">
+               {{ form.title.label_tag }}<br><br>
+               {{ form.title }}<br><br>
+               {{ form.content.label_tag }}<br><br>
+               {{ form.content }}<br><br>
+               {{ form.image.label_tag }}<br><br>
+               {{ form.image }}<br><br>
+             </ul>
+             </div>
+              <div class="btn-group">
+                <button id="btn2" type="submit">Post</button>
+             </div>
+
+           </form>
+
+      </div>
+
+
+    </header
+    <body>
+      <div class="accountbox-editbox3">
+
+
+      <a href="../delete_blog/{{post.id}}"><button id="btn2">Delete</button></a>
+      </div>
+    </body>
+
+{% endblock %}

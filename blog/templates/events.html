@@ -1,0 +1,147 @@
+{% extends 'base2.html' %}
+  {% load static %}
+{# Home Page #}
+  {% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/beach1.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+  {% block content %}
+    <!--    Header  -->
+    <header>
+      <div id="box1">
+        <h1>Events</h1>
+      </div>
+      <!--    Sidebar -->
+      <div class="sidebar">
+        <a href="{% url 'blog' %}"><img src="{% static 'img/eventicon.png' %}" alt="events">
+          <p>Blogs</p></a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'add_events' %}"><img src="{% static 'img/edit.png' %}" alt="writepost">
+          <p>Create </p></a>
+
+          <a  href="{% url 'add_address' %}">  <img src="{% static 'img/locationicon.png' %}" alt="locations">
+            <p>Locations</p></a>
+             {% else %}
+           <a  href="{% url 'home' %}">  <img src="{% static 'img/account.png' %}" alt="locations">
+             <p>Signup<p></a>
+          {% endif %}
+      </div>
+    </header>
+
+{% if user.is_authenticated and not user.address == None %}
+  <div id="cont_blogs">
+
+   <!--    Main  Events Column -->
+  <div id="cont_local">
+    <div id="blogpage">
+      <h4>Near {{user.address.suburbCity}}</h4>
+        {% if event_list_local|length == 0 %}
+          <h5>Currently No Events In Your Area</h5>
+          <a href="{% url 'add_events' %}" src={"blogimg"} ><img src="{% static 'img/test2.jpg' %}" height="180"></a>
+          <ul>
+            <br>
+            <a href="{% url 'add_events' %}" src={"blogimg"} >
+            <li>Currently there are no events coming up in your area. However if you want to organise an event for your area you can add it here.</li></a>
+          </ul>
+          <br><hr class="line1"><br>
+        {% endif %}
+
+         {% for event in event_list_local %}
+         <h5>{{event.title}}</h5>
+         <a id="blogimg" ><img src="{{event.image.url}}" height="180"></a>
+         {% if post.user.image %}
+          <div id="blogaccount"><img src="{{post.user.image.url}}" alt="UserImage"></div>
+         {% endif %}
+
+           <ul>
+            <strong> <li>When: {{event.dateTime}}</li>
+             <li>Where: </li>
+             <li>{{event.addressID.addressLine1}}</li>
+             <li>{{event.addressID.addressLine2}}</li>
+             <li>{{event.addressID.suburbCity}}</li>
+             <li>{{event.addressID.country}}</li></strong>
+             <br>
+              <li>{{event.details}}</li>
+            </ul>
+            <br><hr class="line1"><br>
+         {% endfor %}
+       </div>
+     </div>
+
+       <div id="container_all2">
+
+              <h4> Worldwide </h4><br>
+              {% for event in event_list_far %}
+              <div id="eventpage">
+              <a onclick="showWholeEvent({{event.id}})">
+              <img src="{{event.image.url}}" %}" height="180"></a>
+               <ul>
+                <a onclick="showWholeEvent({{event.id}})"><li><strong>{{event.title}}</strong></li></a>
+                 <li class="appear">When</li>
+                 <li>{{event.dateTime}}</li>
+                 <li class="appear" id="{{event.id}}">Where</li>
+                 <li class="appear" id="{{event.id}}">{{event.addressID.addressLine1}}</li>
+                 <li class="appear" id="{{event.id}}">{{event.addressID.addressLine2}}</li>
+                 <li>{{event.addressID.suburbCity}}</li>
+                 <li class="appear" id="{{event.id}}">{{event.addressID.country}}</li>
+                 <li class="appear" id="{{event.id}}">What:</li>
+                 <li class="appear" id="{{event.id}}">{{event.details}}</li>
+                 <li class="appear" id="{{event.id}}">{{event.userId.username}}</li>
+               </ul>
+
+               </div>
+              {% endfor %}
+
+         </div>
+    </div>
+
+  {% else %}
+    <div id="cont_blogs">
+          <!--    Main  Events Column -->
+        <div id="cont_local">
+          <div id="blogpage">
+             <h4>Login for local content</h4>
+             {% for event in event_list_all %}
+             <h5>{{event.title}}</h5>
+             <a id="blogimg" ><img src="{{event.image.url}}" height="180"></a>
+             {% if post.user.image %}
+              <div id="blogaccount"><img src="{{post.user.image.url}}" alt="UserImage"></div>
+             {% endif %}
+
+             <ul>
+              <strong> <li>When: {{event.dateTime}}</li>
+               <li>Where: </li>
+               <li>{{event.addressID.addressLine1}}</li>
+               <li>{{event.addressID.addressLine2}}</li>
+               <li>{{event.addressID.suburbCity}}</li>
+               <li>{{event.addressID.country}}</li></strong>
+               <br>
+                <li>{{event.details}}</li>
+              </ul>
+              <br><hr class="line1"><br>
+             {% endfor %}
+
+         </div>
+       </div>
+    </div>
+  {% endif %}
+  <script type="text/javascript">
+    function showWholeEvent(eventId){
+      toAppear = document.getElementsByClassName("appear");
+      for (var i = 0; i < toAppear.length; i++){
+        console.log("Got to If statement")
+        console.log("Compare: " + toAppear[i].id + ", With: " + eventId)
+        if (toAppear[i].style.display == "none" && toAppear[i].id == eventId){
+          toAppear[i].style.display = "block"
+        }
+        else{
+          toAppear[i].style.display = "none"
+        }
+      }
+    }
+  </script>
+{% endblock %}

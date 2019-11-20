@@ -1,0 +1,127 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load social_share %}
+{# Add Comment Page #}
+{% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+{% endblock %}
+{% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+   <script>
+    $(document).ready(function(){
+
+  //change text
+  function likeButtonText(btn, count, text){
+  btn.text(count + " " + text)
+  }
+  // Add/ Remove likes
+  $(".like-button").click(function(e){
+    e.preventDefault()
+    var likeBtn = $(".like-button")
+    var likeUrl = likeBtn.attr("data-href")
+    var likeTotal = parseInt(likeBtn.attr("data-likes"))
+    var img = $("#liked")
+    $.ajax({
+      url: likeUrl,
+      method: "GET",
+      data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+      success: function(data){
+        switch(data.liked){
+         case true:
+            likeButtonText(likeBtn, data.total, "Unlike")
+            //img.attr("src", "{% static 'img/button.png'%} ")
+            break;
+         case false:
+            likeButtonText(likeBtn, data.total, "Like")
+            //img.attr("src", "{% static 'img/liked.png'%} ")
+            break;
+        }
+      }
+    });
+    });
+  });</script>
+{% endblock %}
+
+
+
+  {% block content %}
+
+  <div name="anchor" id="container1">
+    <div id="viewblog">
+        <h4>{{post.title}}</h4>
+      <div id="cont-1">
+        {% if post.user.id == user.id %}
+        <a style="color:grey;float:right;font-size:18px;" id="editbtn" href="{% url 'update_post' post.pk %}">Edit</a>
+        {% endif %}
+
+      <img id="viewblogimg" src="{{ post.image.url }}"  alt="Post Image"/>
+        {% if post.user.image %}
+        <div id="blogaccount"><img src="{{ post.user.image.url }}" alt="User Image"></div>
+        {% else %}
+        <div id="blogaccount"><img src="{% static 'img/accountnav2.png' %}" alt="User Image"></div>
+      {% endif %}
+
+      <ul>
+         <!--    Like Button -->
+         {% if user.is_authenticated %}
+        <div id="likebtn">
+          <img id="liked" src="{% static 'img/liked.png' %}" alt="liked">
+          <a class="like-button" style="color:grey;font-size:18px;" data-href='{{ post.like_api_url }}'
+          data-likes='{{ post.likes.count }}' href='{{ post.get_like_url }}'>
+          {{post.likes.count}} Like</a></div>
+          {% else %}
+          <div id="likebtn">
+           <img id="liked" src="{% static 'img/liked.png' %}" alt="liked">
+           {{post.likes.count}} Like
+          </div>
+          {% endif %}
+          {% if user.is_authenticated and backends.associated %}
+          <div id="fbkshare">{% post_to_facebook get_absolute_url "Facebook Share" %}</div>
+          {% endif %}
+          <li>{{post.datePublished}}</li>
+          <li>{{post.user.username}}</li>
+
+           <br><hr class="line1"><br>
+
+
+       </ul>
+      <p id="post-content">{{post.content}}</p><br>
+       {% if user.is_authenticated %}
+        <form enctype='multipart/form-data' method="POST">
+           {% csrf_token %}
+          <div id="info">
+            <div class="btn-group">
+               {{ form.comment }}
+               <br><br>
+               <button id="btn3" type="submit">Add Comment</button>
+             </div>
+          </div>
+        </form>
+        {% endif %}
+
+           <div id="comments">
+                <ul>
+                {% for comment in comments %}
+                  {% if comment.postId == post %}
+                    <div id="comment">{{comment.comment}}
+                      {% if comment.userId == request.user %}
+                        <a href="{% url 'edit_comment' comment.pk%}"><img id="editComment" src="/static/img/edit_dark.png" alt="" height="25px"></a>
+                      {% endif %}
+
+                    </div>
+                    <li>By {{comment.userId.username}}</li>
+
+                    <br><br>
+                  {% endif %}
+                {% endfor %}
+                </ul>
+             </div>
+          <br><br>
+        </div>
+      </div>
+   </div><br><br>
+ {% endblock %}

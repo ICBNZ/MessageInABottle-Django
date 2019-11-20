@@ -1,0 +1,65 @@
+{% extends 'base2.html' %}
+{# Add Event Page #}
+{% load static %}
+
+    <!--   head  -->
+    {% block head %}
+      <!--    Add for date picker  -->
+     {% load bootstrap4 %}
+     {# {% bootstrap_css %}         Embed Bootstrap CSS #}
+     {% bootstrap_javascript jquery='full' %}
+      {{form.media}}
+    {% endblock %}
+
+    <!--    Background Image -->
+    {% block bkg %}
+      <style>
+        #body-bg {
+         background-image: url({% static 'img/beach1.jpg' %})
+        }
+      </style>
+    {% endblock %}
+
+    <!--    Main Content  -->
+    {% block content %}
+      <!--    Header  -->
+      <header>
+        <div class="accountbox-editbox">
+          <br><h4>Add Event</h4>
+          <!--    Event Form  -->
+           <form enctype='multipart/form-data' method="POST">
+              {% csrf_token %}
+
+               <ul id="info1" style="width:400px;display:inline-block;">
+                 <div id="event-info">
+                  <p>Title</p>
+
+                  <p>{{ form.title }}</p><br>
+                  <p>{{ form.details.label_tag }}</p>
+                  <p>{{ form.details }}</p><br>
+                  <p>{{ form.dateTime.label_tag }}</p>
+                  <p>{{ form.dateTime }}</p>
+                  <p>{{ form.image.label_tag }}</p>
+                  <p>{{ form.image }}</p><br><br>
+                 </div>
+               </ul>
+
+              <div class="btn-group">
+                <button id="btn2" type="submit">Create Event</button>
+             </div>
+           </form>
+          </div>
+       </header>
+
+      <!--    JS  -->
+      {% block scripts %}
+        <script>
+          $(function () {
+            $("id_dateTime").datetimepicker({
+              format: 'd/m/Y H:i',
+            });
+          });
+        </script>
+      {% endblock %}
+
+    {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+  {% load static %}
+  {% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/rocknorway.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+      <div class="accountbox-editbox">
+          <br>
+          <!--    Address  -->
+          <div id="info">
+          <form method="post">
+            {% csrf_token %}
+            <h4> Address </h4>
+            <form method="post">
+              {% csrf_token %}
+              <div id="info">
+              <ul id="info1">
+                {{ form.addressLine1.label_tag }}<br><br>
+                {{ form.addressLine2.label_tag }}<br><br>
+                {{ form.suburbCity.label_tag }}<br><br>
+                {{ form.country.label_tag }}<br><br>
+                {{ form.stateProvince.label_tag }}<br><br>
+                {{ form.zipCode.label_tag }}<br><br>
+                {{ form.latitude.label_tag }}<br><br>
+                {{ form.longitude.label_tag }}<br><br>
+              </ul>
+              <ul id="info2">
+                {{ form.addressLine1 }}<br><br>
+                {{ form.addressLine2 }}<br><br>
+                {{ form.suburbCity }}<br><br>
+                {{ form.country }}<br><br>
+                {{ form.stateProvince }}<br><br>
+                {{ form.zipCode }}<br><br>
+                {{ user.address.latitude }}<br><br>
+                {{ user.address.longitude }}
+            </div>
+          <div class="btn-group">
+            <button id="btn2" type="submit">Update Address</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </header><br><br>
+
+{% endblock %}

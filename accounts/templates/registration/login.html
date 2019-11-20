@@ -1,0 +1,32 @@
+{% extends 'base-home.html' %}
+  {% load static %}
+{# login Page #}
+
+
+    {% block box2 %}
+        <div id="box2">
+            <div id="modal2" style="">
+                <div class="btn-group">
+                  <div class="login">
+                     <br>
+                     <a id="fbk" href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'img/facebooklogin.png' %}" alt="FacebookLogin"></a>
+                     <br><br><h5 id="fbk"> --- OR --- <h5>
+                    <h4> Welcome Back </h4>
+                     <form method="post" action="{% url 'login' %}">
+                     {% csrf_token %}
+                     {{ form.username.label_tag }}
+                     {{ form.username }}<br><br>
+                     {{ form.password.label_tag }}
+                     {{ form.password }}<br><br>
+                     <a id="pwd" href="{% url 'password_reset' %}">Forgotten password?</a><br>
+                     {% if form.errors %}
+                     <p id="error">Your details are incorrect. Please try again.</p><br>
+                     {% endif %}
+                     <button id="btn2" type="submit" value="login">Login</button>
+                     <input type="hidden" name="next" value="{{ next }}">
+                     </form>
+                   </div>
+               </div>
+            </div>
+          </div>
+    {% endblock %}

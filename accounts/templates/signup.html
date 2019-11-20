@@ -1,0 +1,36 @@
+{% extends 'base-home.html' %}
+  {% load static %}
+{# Home Page #}
+  {% block box2 %}
+      <div id="box2">
+          <div id="modal1">
+              <div class="btn-group">
+
+                 <!--    Login -->
+                 <div class="login">
+
+
+                   <a id="fbk" href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'img/facebooklogin.png' %}" alt="FacebookLogin"></a>
+                   <br><br><br> <p id="fbk"> --- OR --- <p>
+
+                     <form method="post">
+                      {% csrf_token %}
+                      <h4> Create Account </h4>
+                      {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}<br><br><br>
+                        {% for error in field.errors %}
+                          <p id="error" style="line-height:15px;">{{ error }}</p>
+                        {% endfor %}
+                     {% endfor %}<br><br>
+                     <a id="pwd" href="{% url 'login' %}">Already have an account?</a><br>
+                     
+                      <button id="btn2" type="submit"><a href="{% url 'login' %}"></a>Sign up</button>
+                    </form>
+
+                 </div>
+
+             </div>
+          </div><br><br>
+        </div>
+    {% endblock %}

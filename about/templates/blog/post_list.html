@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+  {% load static %}
+{# Home Page #}
+  {% block bkg %}
+    <style>
+       body {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+      <div id="box1">
+        <h1>All Blogs</h1>
+      </div>
+      <ul>
+        {% for post in object_list %}
+          <li>{{ post.title }}</li>
+          <li>{{ post.image}}</li>
+          <li>{{ post.content}}</li>
+          <li>{{ post.datePublished }}</li>
+          <br>
+        {% endfor %}
+
+
+      </ul>
+    </header>
+
+{% endblock %}

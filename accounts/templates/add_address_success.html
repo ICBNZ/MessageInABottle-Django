@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+  {% load static %}
+{# Account Page #}
+  {% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/rocknorway.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header style="min-height:800px;">
+          <!--    Account Info  -->
+          <h4>Address Added Successfully</h4>
+    </header>
+
+{% endblock %}

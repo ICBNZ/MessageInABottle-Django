@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{# Edit Comment Page #}
+{% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+<div name="anchor" id="container1">
+
+    <div id="viewblog">
+      <div id="comments">
+           <ul>
+               <div id="comment">{{comment.comment}}
+               </div>
+               <li>By {{comment.userId.username}}</li>
+               <br><br>
+
+           </ul>
+        </div>
+        <form enctype='multipart/form-data' method="POST">
+           {% csrf_token %}
+          <div id="info">
+
+            <div class="btn-group">
+              <p>Update Comment</p>
+               {{ form.comment }}
+             <br><br>
+               <button id="btn3" type="submit">Update</button>
+
+             </div>
+          </div>
+        </form>
+        <a href="../delete_comment/{{comment.pk}}"><button id="btn3">Delete</button><a>
+
+
+        <br><br>
+    </div>
+   </div>
+
+ {% endblock %}

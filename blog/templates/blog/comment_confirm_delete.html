@@ -1,0 +1,33 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{# Delete Comment Comment Confirmation Page #}
+{% block bkg %}
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+<div name="anchor" id="container1">
+<div id="viewblog">
+  <div id="comments">
+       <ul>
+           <div id="comment">{{comment.comment}}
+           </div>
+           <li>By {{comment.userId.username}}</li>
+           <br><br>
+
+       </ul>
+    </div>
+<form method="post">{% csrf_token %}
+    Are you sure you want to delete your comment?<br><br>
+     <button id="btn3" type="submit">Confirm</button>
+</form>
+</div>
+</div>
+{% endblock %}

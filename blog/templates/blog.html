@@ -1,0 +1,192 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load mathfilters %}
+{# Blog Page #}
+
+  {% block bkg %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <!--   Background -->
+    <style>
+       #body-bg {
+        background-image:  url({% static 'img/sea.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+ {% block content %}
+  <!--    LOGGED IN USER -->
+  {% if user.is_authenticated and not user.address == None %}
+    <header>
+      <div id="blogbox2">
+        <h1>{{user.address.suburbCity}}</h1>  <!--    User Location -->
+      </div>
+      <!--    Sidebar -->
+      <div class="sidebar">
+       <a href="{% url 'events' %}"><img src="{% static 'img/eventicon.png' %}" alt="events">
+          <p>Events</p></a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'new_post' %}"><img src="{% static 'img/edit.png' %}" alt="writepost">
+          <p>Create</p></a>
+
+          <a  href="{% url 'add_address' %}">  <img src="{% static 'img/locationicon.png' %}" alt="locations">
+            <p>Locations</p></a>
+             {% else %}
+           <a  href="{% url 'home' %}">  <img src="{% static 'img/account.png' %}" alt="locations">
+             <p>Signup<p></a>
+          {% endif %}
+      </div>
+      <!--    End Sidebar -->
+    </header>
+
+
+
+      <div id="cont_blogs">
+         <!--    Main  Blog Column -->
+            <div id="cont_local">
+              <div id="blogpage">
+                  <h4>Local Posts {{user.address.suburbCity}}</h4>
+                    {% if post_list2|length == 0 %}
+                      <h5>No Blogs In Your Area</h5>
+                      <a id="blogimg2" href="{% url 'new_post' %}">
+                      <img src="{% static 'img/test2.jpg' %}" height="280"></a>
+                      <ul><br>
+                        <a id="blogimg2" href="{% url 'new_post' %}">
+                          <li>Currently there no blogs in your area.  You can post a blog and let the community know what you are doing and what you want to do.</li>
+                        </a>
+                      </ul>
+                      <br><hr class="line1"><br>
+                    {% endif %}
+
+            {% for post in post_list2 %}
+
+                <h5>{{post.title}}</h5>
+               <a id="blogimg2" href="{{post.pk}}"><img src="{{post.image.url}}"></a>
+
+              <!--    User Image -->
+              {% if post.user.image %}
+                <div id="blogaccount"><img src="{{ post.user.image.url }}" alt="User Image"></div>
+              {% else %}
+                <div id="blogaccount"><img src="{% static 'img/accountnav2.png' %}" alt="User Image"></div>
+              {% endif %}
+
+
+
+                  <ul>
+                     <li>{{post.datePublished}}</li>
+                     <li>{{post.user.username}}</li>
+                     <br>
+                  </ul>
+                <hr class="line1">
+                <div id="comments">
+                    <ul>
+                      {% for comment in comment_list %}
+                        {% if comment.postId == post %}
+                            <div id="comment">{{comment.comment}}</div>
+                          <div id="comment-info">
+                          <li>By {{comment.userId.username}}</li><br><br>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                      <li><a href="{{post.pk}}">View More</a></li>
+                   </ul>
+                </div>
+            {% endfor %}
+
+          </div>
+        </div>
+        <!--    End Main Column -->
+
+        <!--    Side  Blog Column -->
+        <div id="container_all2">
+            <div id="blogpage">
+                <h4> Worldwide </h4><br>
+                {% for post in post_list %}
+               <a href="{{post.pk}}"><img id="sideimg" src="{{post.image.url}}" height="180"></a>
+                <ul>
+                  <li>{{post.datePublished}}</li>
+                  <li>{{post.user.username}}</li>
+                </ul>
+               {% endfor %}
+            </div>
+        </div>
+
+        </div>
+          <!--    End Side Column -->
+
+
+
+  <!--    End Logged In Blogs -->
+  {% else %}
+          <header>
+              <div id="blogbox2">
+                <h1>New Zealand</h1>
+              </div>
+
+            <!--    Sidebar -->
+            <div class="sidebar">
+               <a href="{% url 'events' %}"><img src="{% static 'img/eventicon.png' %}" alt="events">
+                <p>Events</p></a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'new_post' %}"><img src="{% static 'img/edit.png' %}" alt="writepost">
+                <p>Create</p></a>
+
+                <a  href="{% url 'add_address' %}">  <img src="{% static 'img/locationicon.png' %}" alt="locations">
+                  <p>Locations</p></a>
+                   {% else %}
+                 <a  href="{% url 'home' %}">  <img src="{% static 'img/account.png' %}" alt="locations">
+                   <p>Signup<p></a>
+                {% endif %}
+            </div>
+
+          </header>
+       <!--    End Header -->
+
+            <div id="cont_blogs">
+               <!--    Main  Blog Column -->
+              <div id="cont_local">
+                <div id="blogpage">
+                  <h4>Worldwide</h4>
+                    {% for post in post_notloggedin %}
+                      <h5>{{post.title}}</h5>
+
+                      <!--    Post Image -->
+                      <a id="blogimg2" href="{{post.pk}}"><img src="{{post.image.url}}" height="180"></a>
+
+                      <!--    User Image -->
+                       {% if post.user.image %}
+                        <div id="blogaccount"><img src="{{ post.user.image.url }}" alt="User Image"></div>
+                       {% else %}
+                        <div id="blogaccount"><img src="{% static 'img/accountnav2.png' %}" alt="User Image"></div>
+                       {% endif %}
+
+                         <!--    Like Button -->
+                      <ul>
+
+                          <li>{{post.datePublished}}</li>
+                          <li>{{post.user.username}}</li>
+                       </ul><br>
+
+                      <!--    Comments -->
+                      <div id="comments">
+                        <ul>
+                        {% for comment in comment_list %}
+                        {% if comment.postId == post %}
+                          <div id="comment">{{comment.comment}}</div>
+                            <div id="comment-info"><li>By {{comment.userId.username}}</li><br><br></div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                          <li><a href="{{post.pk}}">View More</a></li>
+                        {% endif %}
+                        </ul>
+                      </div>
+
+                  {% endfor %}
+                </div>
+              </div>
+
+          </div>
+  {% endif %}
+
+
+{% endblock %}

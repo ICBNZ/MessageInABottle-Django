@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+{# Home Page #}
+
+  {% block bkg %}{% endblock %}
+
+    <!-- Header-->
+    {% block header %}
+    <a id="close" href="{% url 'whatcanbedone' %}"> < Back </a>        <!-- Close button -->
+    <div id="menu">
+      <div id="menu-viewMenu"></div>  <!-- Prevention bkground -->
+      <div id="menu-viewMenu2"></div> <!-- Solution bkground -->
+    </div>
+    {% endblock %}
+
+  <!-- Content What Can Be Done -->
+  {% block content %}
+  <div id="about">
+    <h1 style="color:white;">What Can Be Done?</h1>
+    <div class="open">
+      <a id="prevention" ><div id="about-1">
+        <h2>Prevention</h2>
+        <p>Learn more about prevention of plastic pollution
+          <br><hr class="line1"><p style="font-size:70px;"> < </p>
+      </div></a>
+      <a id="solutions" ><div id="about-1">
+        <h2>Solutions</h2>
+        <p>Find out how you can help with current plastic pollution
+          <br><hr class="line1"><p style="font-size:70px;"> > </p>
+      </div></a>
+    </div>
+  </div>
+
+  <!-- SOLUTIONS PAGE -->
+  <div id="solContent">
+    <div id="content">
+      <div id="content-1">
+
+        <!-- Title -->
+        <header>
+          <div id="blogbox2">
+            <h1>Fix Current Pollution</h1>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <div id="container3" style="background-color:#093b4a;color:white;">
+          <div id="content-inner"style="color:white;">
+
+          <!-- Current Situation -->
+            <br><br><h2>THE CURRENT SITUATION</h2>
+            <p style="opacity:0.8;font-size:25px;line-height:40px;">Around 8 million tons of plastic enter the ocean annually with an estimated 5.25 trillion plastic pieces.<br>
+                These pieces of plastic take hundreds of years to degrade, destroying marine creatures <br>and our environment.</p>
+          </div>
+        </div>
+
+        <div id="container1" style="background-color:#093b4a;">
+          <div id="container4">
+            <img id="content-img-3" src="{% static 'img/oceanpollution.jpg' %}" alt="Great-Garbage-Patch">
+
+           <div id="container4-content">
+            <h4>The Great Garbage Patch</h4>
+                <p>The 'Great Garbage Patch' is a large collection of garbage in the ocean, pushed together by currents.
+                The garbage patch is around 3 times the size of France, it expands rougly 1.6 Million km2.
+                It contains 1.8 trillion pieces of plastic. There are also 5 other large garbage patches in the ocean.
+              </p>
+          </div>
+        </div>
+          </div>
+
+        <div id="container1" style="background-color:#093b4a;">
+          <div id="container4">
+            <div id="container4-content">
+              <h4>Macro/ Micro Plastics</h4>
+              <p>Microplastics come from many sources including those formed from larger plastic items as they are broken down.
+                Microbeads are tiny solid plastic particles used in cosmetics, healthcare and personal care products for example exfoliants and bulking agents.
+                These microplastics aren't captured by water waste systems and so the particles end up in the rivers and oceans. The particles absorb and give off harmful toxins and take hundreds of years to degrade.
+              </p>
+            </div>
+              <img id="content-img-3" src="{% static 'img/microplastic.jpg' %}" alt="Microbeads">
+          </div>
+        </div>
+        <div id="container1" style="background-color:#093b4a;">
+          <div id="container4">
+            <img id="content-img-3" src="{% static 'img/turtle_rubbish.jpg' %}" alt="turtle">
+            <div id="container4-content">
+            <h4>Marine Wildlife</h4>
+                <p>Plastic is harmful to marine creatures and sea birds, destroying their habitat and killing hundreds of thousands each year from getting entangled or accidently eating plastic.
+                  Turtles for example often mistake plastic bags for jellyfish, and many sea creatures are being found with plastic in their stomachs. With plastic entering the food chain
+                  this also effects humans who eat seafood who will in turn consume the plastic and toxins which can be released into people's bodies after the fish is eaten.
+                </p><br>
+          </div>
+        </div>
+    </div>
+
+        <!-- Company images -->
+        <div id="cont4">
+          <div class="boxes">
+            <ul>
+              <li class="one"><a style="cursor: pointer;"><img src="{% static 'img/4Ocean.jpg' %}" alt="4 Ocean"></a></li>
+              <li class="two"><a style="cursor: pointer;"><img src="{% static 'img/theoceancleanup.jpg' %}" alt="The Ocean Cleanup"></a></li>
+              <li class="three"><a style="cursor: pointer;"><img src="{% static 'img/plasticoceans.jpg' %}" alt="Plastic Oceans"></a></li>
+              <li class="four"><a style="cursor: pointer;"><img src="{% static 'img/marinemegafauna.jpg' %}" alt="Marine Mega Fauna Foundation"></a></li>
+              <li class="five"><a style="cursor: pointer;"><img src="{% static 'img/marineconservation.jpg' %}" alt="Marine Conservation Society"></a></li>
+            </ul>
+          </div>
+
+          <!-- Company info -->
+          <div class="info">
+          <div class="company">
+            <div class="cont">
+              <h2>How You Can Help...</h2>
+              <p>There are a number of organisations helping to combat plastic pollution that you can support.<br>Click the logos to find out more or donate.</p>
+              <a id="companylink" target="_blank" href="https://theoceancleanup.com/"><div id="btn4">LEARN MORE</div></a>
+             </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Events -->
+      <div id="container3">
+          <div id="content-inner-2" style="color:rgba(18, 78, 92);">
+            <br><br><h2>EVENTS</h2>
+              <ul>
+                <li>There are many cleanup events happening around the world. This is a great way to help get rid of plastic pollution in beaches, rivers and the ocean.
+                <br>Contribute by joining local cleanup events in your area or organise your own.</li>
+                <br><a href="{% url 'events' %}"class="navbtn" style="margin-left:5%;">
+                <svg height="60" width="150">
+                <rect class="shape" id="shape2" height="60" width="150" />
+                <div id="nav2" class="text" style="margin-left:5%;padding-left:0.5%;">VIEW EVENTS</div>
+                </svg></a>
+                <ul><br>
+              <img id="content-img-2" class="content-img" src="{% static 'img/beachcleanup.jpg' %}" alt="beach cleanup">
+              <img id="content-img-2" class="content-img" src="{% static 'img/diver2.jpg' %}" alt="cleanup">
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- PREVENTION PAGE -->
+    <div id="prevContent">
+      <div id="content-1">
+
+        <!-- Title -->
+        <header>
+          <div id="blogbox2">
+            <h1>Prevention</h1>
+          </div>
+        </header>
+
+        <div id="container3"class="cont-2" style="background-color:#f5f5f5">
+          <img src="{% static 'img/microbeads.jpg' %}" alt="Microplastic">
+
+          <div id="content-inner">
+              <div id="boxes-2">
+                  <br><h2> HOW DOES PLASTIC END UP IN THE OCEAN?</h2>
+                    <ul>
+                    <h4>Littering</h4>
+                    <li>Plastic that is thrown away ends up getting washed down drains and going into rivers, streams and oceans.</li>
+                    <h4> Not Recycling</h4>
+                    <li>Plastic that isn't recycled and thrown away can easily blow away from landfill
+                      as it is light and can make it's way into rivers and the ocean.</li>
+                    <h4>Items Washed Down Drains</h4>
+                    <li>Items such as wipes and microbeads that are washed down drains end up in the ocean where they are mistaken for food and taken hundreds of years to degrade.</li>
+                    <h4>Discarded Fishing Gear</h4>
+                    <li>Fishing gear that is lost or discarded contributes to a large amount of ocean pollution, around 640,000 tonnes per year.</li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+
+        <!-- Main content -->
+        <div id="container3" >
+          <div id="content-inner">
+            <br><br>
+            <h2>HOW TO PREVENT PLASTIC POLLUTION?</h2><br>
+            <img id="icons" src="{% static 'img/icons/eco-icon-06.png' %}" alt="Reduce-Icon" style="margin-bottom:150px;">
+            <h4>Reduce</h4>
+            <ul>
+              <li>Reduce your use of single-use plastics, such as bags, water bottles, straws, containers, plastic cutlery.</li>
+              <li>Instead opt for non plastic alternatives and reusable items such as metal straws, coffee cups, paper or material reusable bags.</li>
+              <li>Don't purchase products with micro-beads such as Toothpaste, body washes.</li>
+            </ul>
+            <br><br>
+
+            <img id="icons" src="{% static 'img/icons/eco-icon-19.png' %}" alt="Reuse-Icon">
+            <h4>Reuse</h4>
+            <ul>
+              <li>Where possible repair items instead of throwing away and replacing them.</li>
+              <li>Try to buy second hand items, buy in bulk to reduce packaging eg. clothing, packaging, food, healthcare</li>
+              <li></li>
+            </ul>
+            <br><br>
+
+            <img id="icons" src="{% static 'img/icons/eco-icon-16.png' %}" alt="Recycle-Icon">
+            <h4>Recycle</h4>
+            <ul>
+              <li>Recycle plastic, collections, refund programs, donate, buy recycled products</li>
+              <li>Organise recycling at home for curbside collections</li>
+            </ul>
+            <br><br>
+
+            <img id="icons" src="{% static 'img/icons/eco-icon-17.png' %}" alt="Remove-Icon">
+            <h4>Remove</h4>
+            <ul>
+              <li>Help with cleanup events at beaches and rivers in your local area or organise your own events.</li>
+            </ul>
+            <br><br>
+            <ul>
+            <br><br><br><br>
+          </div>
+          <div id="content-inner">
+            <br><br><br><br>
+            <a target=blank href="https://boxedwaterisbetter.com/"><img class="content-img" id="content-img-4" src="{% static 'img/boxedwater1.jpg' %}" alt="Boxed Water"></a>
+            <img id="content-img-4" class="content-img" src="{% static 'img/ocean_pollution6.png' %}" alt="4 Ocean" style="margin-right:4%;">
+            <img id="content-img-4" class="content-img"  src="{% static 'img/river_pollution.png' %}" alt="Recycling">
+            <img id="content-img-4" class="content-img" class="content-img"  src="{% static 'img/plastic1.jpg' %}" alt="Cleanup">
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- JS-->
+      {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+      <script src="{% static 'whatcanbedone.js' %}"></script>
+
+      {% endblock %}
+  {% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+  {% load static %}
+{# Account Page #}
+  {% block bkg %}
+    <style>
+       #body-bg{
+        background-image:  url({% static 'img/rocknorway.jpg' %})
+       }
+    </style>
+  {% endblock %}
+
+    {% block content %}
+    <!--    Header  -->
+    <header>
+             <h1>About</h1>
+          <!--    Account Info  -->
+       <div id="quotes-all">
+       <div id="quotes-cont">
+              <br>
+              <p>Every year, more and more plastic ends up in the world’s oceans, which has had a devastating impact on marine life. There is often little or no incentive to reduce plastic use and remove the plastic before it enters the ocean.</p>
+              <p>Message In A Bottle aims to create awareness about the effects of plastic pollution in the ocean including ways to help with the current pollution, prevention and promotion of charities for donations and our game 'Something Fishy'.</p>
+              <p>We invite users to sign up and get involved from around the world to create, view and share blog posts and events to help fight plastic pollution.<p><br>
+
+        </div>
+        <div id="quotes-cont2">
+          <div id="quotes">
+                <p><q>Because we all share this planet earth, we have to learn to live in harmony and peace with each other and with nature. This is not just a dream, but a necessity.</q></p>
+                <img id="quoteimg" src={% static 'img/DLama.jpg' %} alt="image of Dalai Lama" height="125px">
+                <p>Dalai Lama</p>
+          </div>
+          <div id="quotes">
+                <p><q>What you do makes a difference, and you have to decide what kind of difference you want to make.</q></p>
+                <img id="quoteimg" src={% static 'img/goodall.jpg' %} alt="image of Jane Goodall" height="125px">
+                <p>Jane Goodall</p>
+          </div>
+          <div id="quotes">
+                <p><q>We shape our dwellings; thereafter they shape us.</q></p>
+                <img id="quoteimg" src={% static 'img/churchill.jpg' %} alt="image of Winston Churchill" height="125px">
+                <p>Winston Churchill</p>
+          </div>
+          <div id="quotes">
+                <p><q>What we are doing to the forests of the world is but a reflection of what we are doing to ourselves and to one another.</q></p>
+                <img id="quoteimg" src={% static 'img/gandhi.jpg' %} alt="image of Mahatma Gandhi" height="125px">
+                <p>Mahatma Gandhi</p>
+          </div>
+          <div id="quotes">
+                <p><q>The environment is everything that isn't me.</q></p>
+                <img id="quoteimg" src={% static 'img/einstien.jpg' %} alt="image of Albert Einstien" height="125px">
+                <p>Albert Einstein</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+{% endblock %}
